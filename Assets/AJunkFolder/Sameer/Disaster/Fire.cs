@@ -16,9 +16,14 @@ public class Fire : Disaster
         yCoord = this.transform.position.y;
         zCoord = this.transform.position.z;
         parentYCoord = this.transform.parent.position.y;
-
         fire = Resources.Load<GameObject>("Prefabs/TinyFire");
 
+        spawnFires();
+    }
+
+
+    public void spawnFires()
+    {
         //fire.transform.parent = this.gameObject.transform;
 
         if (xCoord != 0)
@@ -34,11 +39,10 @@ public class Fire : Disaster
         //        firePosition = new Vector3(Random.Range(-3.5f, 3.5f), yCoord + 0.5f, Random.Range(-3.5f, 3.5f));
         //    else
         //        firePosition = new Vector3(Random.Range(-3.5f, 3.5f), yCoord - 0.5f, Random.Range(-3.5f, 3.5f));
-
         //}
-        else if(zCoord != 0)
+        else if (zCoord != 0)
         {
-            if(zCoord > 0)
+            if (zCoord > 0)
                 firePosition = new Vector3(Random.Range(-3.5f, 3.5f), parentYCoord + Random.Range(-3.5f, 3.5f), zCoord + 0.5f);
             else
                 firePosition = new Vector3(Random.Range(-3.5f, 3.5f), parentYCoord + Random.Range(-3.5f, 3.5f), zCoord - 0.5f);
