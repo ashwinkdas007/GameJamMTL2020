@@ -21,6 +21,18 @@ public class GenericManager<T> where T : IUpdatable  {
 
     }
 
+<<<<<<< Updated upstream
+=======
+    }
+    public virtual void PhysicsRefresh()
+    {
+
+    }
+    public virtual void PostInitialize()
+    {
+
+    }
+>>>>>>> Stashed changes
     public virtual void UpdateManager(float dt)
     {
         UpdateStackElements();

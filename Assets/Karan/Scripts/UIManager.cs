@@ -11,10 +11,17 @@ public class UIManager: MonoBehaviour
     public static UIManager Instance { get { if (instance == null) { instance = new UIManager(); } return instance; } }
 
     #endregion
+<<<<<<< Updated upstream
     Player player;
     public int livesCount = 3;
     public RawImage[] Lives;
     public void Initialize(Player _player)
+=======
+    PlayerController player;
+    public int livesCount = 3;
+    public RawImage[] Lives;
+    public void Initialize(PlayerController _player)
+>>>>>>> Stashed changes
     {
         player = _player;
     }
@@ -29,7 +36,11 @@ public class UIManager: MonoBehaviour
         
     }
 
+<<<<<<< Updated upstream
     public void Refresh(Player _player)
+=======
+    public void Refresh(PlayerController _player)
+>>>>>>> Stashed changes
     {
         player = _player;
     }

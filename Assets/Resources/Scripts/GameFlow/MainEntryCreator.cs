@@ -11,7 +11,11 @@ public class MainEntryCreator : MonoBehaviour
         if (!GameObject.FindObjectOfType<MainEntry>())
         {
             GameObject mainFlowObj = new GameObject();
+<<<<<<< Updated upstream
             mainFlowObj.AddComponent<MainEntry>().Initialize();
+=======
+            mainFlowObj.AddComponent<MainEntry>().Start();
+>>>>>>> Stashed changes
         }
         GameObject.Destroy(gameObject);
     }
