@@ -51,10 +51,10 @@ public class FloorManager : GenericManager<SampleEntity>
     public override void Refresh(float dt)
     {
         timePass += dt;
-        if (timePass >= 10f)
+        if (timePass >= LevelTime)
         {
             timePass = 0f;
-            ReplaceFloors();
+            //ReplaceFloors();
         }
         Debug.Log(timePass);
     }
@@ -80,7 +80,7 @@ public class FloorManager : GenericManager<SampleEntity>
                 floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, -(floorHeight + 0.5f), floorList[i].transform.position.z);
             }
         }
-        for (int i = FloorsInView; i < (FloorsInView*2)-1; i++)
+        for (int i = FloorsInView; i <= (FloorsInView*2)-1; i++)
         {
            
                 floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, (floorHeight*i + 0.5f), floorList[i].transform.position.z);           
@@ -111,18 +111,20 @@ public class FloorManager : GenericManager<SampleEntity>
     {
         if (!isInitialized)
         {
-            for (int i = 0; i < ((FloorsInView * 2)-1); i++)
+            for (int i = 0; i <= ((FloorsInView * 2)-1); i++)
             {
-                floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
+                 floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
+                floorList[i].transform.name = "Floor" + i;
+
             }
             FloorsHeightAdjustment();
             isInitialized = true;
         }
         else
         {
-            for (int i = 0; i < ((FloorsInView * 2)-1); i++)
+            for (int i = 0; i <= ((FloorsInView * 2)-1); i++)
             {
-                floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
+
             }
         }
         
@@ -135,20 +137,26 @@ public class FloorManager : GenericManager<SampleEntity>
         
         for (int i = 0; i <= (FloorsInView*2)-1; i++)//assign 123 floors to floorListCurrent and 456 to floorlistnew
         {
+           
             if(i<FloorsInView)
-                floorListCurrent[i] = floorList[i];
+                floorListCurrent.Add(floorList[i]);
             else
-                floorListNew[i] = floorList[i];
+                floorListNew.Add( floorList[i]);
         }
 
-        floorList = null;
-        for (int i = 0; i <= (FloorsInView*2)-1; i++)//assign new and current to the actual floor list
+        floorList = new List<GameObject>(); ;
+        for (int i = 0; i < floorListNew.Count; i++)//assign new and current to the actual floor list
         {
             if (i < FloorsInView)
-                floorList[i] = floorListNew[i];
-            else
-                floorList[i] = floorListCurrent[i];
+                floorList.Add(floorListNew[i]);
         }
+        for (int i = 0; i < floorListCurrent.Count; i++)//assign new and current to the actual floor list
+        {
+            
+                floorList.Add(floorListCurrent[i]);
+        }
+       
+        
         CameraMove();
         ViewLevel();
     }
@@ -156,14 +164,20 @@ public class FloorManager : GenericManager<SampleEntity>
     {
         PlayerManager.Instance.player.getPlayerInput = false;
         float yAxisDifferenceInView = floorList[0].transform.position.y- floorList[FloorsInView].transform.position.y;
+
        
-            for (int i = ((FloorsInView * 2)-1); i >=0 ; i++)//assign new and current to the actual floor list
-            {
+        for (int i = ((FloorsInView * 2) - 1); i >=0 ; i--)
+        {
+             floorList[i].transform.position = Vector3.Lerp(floorList[i].transform.position, new Vector3(floorList[i].transform.position.x, floorList[i].transform.position.y - yAxisDifferenceInView, floorList[i].transform.position.z), (yAxisDifferenceInView-(yAxisDifferenceInView - floorList[i].transform.position.y) / yAxisDifferenceInView));
+        }
+        for (int i = FloorsInView; i < FloorsInView * 2; i++)
+        {
 
             // floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, floorList[i].transform.position.y-0.5f,floorList[i].transform.position.z);
-            floorList[i].transform.position = Vector3.Lerp(floorList[i].transform.position, new Vector3(floorList[i].transform.position.x, floorList[i].transform.position.y - yAxisDifferenceInView, floorList[i].transform.position.z), (yAxisDifferenceInView-(yAxisDifferenceInView - floorList[i].transform.position.y) / yAxisDifferenceInView));
-            }
-       
+            floorList[i].transform.position = Vector3.Lerp(floorList[i].transform.position, new Vector3(floorList[i].transform.position.x, floorList[i].transform.position.y + (2 * yAxisDifferenceInView), floorList[i].transform.position.z), (yAxisDifferenceInView - (yAxisDifferenceInView - floorList[i].transform.position.y) / yAxisDifferenceInView));
+        }
+        PlayerManager.Instance.player.getPlayerInput = true;
+
     }
       
     
