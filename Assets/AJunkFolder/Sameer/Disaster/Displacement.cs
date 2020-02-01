@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Displacement : Disaster
 {
-    [HideInInspector]public Vector3 DisplacementVectorNeeded;
+    [HideInInspector]public Vector3 oldPos;
     public void Awake()
     {
-        DisplacementVectorNeeded = new Vector3();
+        oldPos = new Vector3();
         Vector3 newPosition=transform.position;
         if(Random.value>0.5f)
         {
@@ -68,7 +68,7 @@ public class Displacement : Disaster
                 }
             }
         }
-        DisplacementVectorNeeded= newPosition- transform.position;
+       oldPos= transform.position;
         transform.position = newPosition;
     }
     public void Refresh()
@@ -76,9 +76,9 @@ public class Displacement : Disaster
         
       
     }
-    public Vector3 GetDisplacementVector()
+    public Vector3 GetOldPos()
     {
-        return DisplacementVectorNeeded;
+        return oldPos;
     }
 
 

@@ -47,14 +47,13 @@ public class FloorManager : GenericManager<SampleEntity>
 
     }
 
-
     public override void Refresh(float dt)
     {
         timePass += dt;
         if (timePass >= LevelTime)
         {
             timePass = 0f;
-            //ReplaceFloors();
+            ReplaceFloors();
         }
         Debug.Log(timePass);
     }
@@ -65,28 +64,44 @@ public class FloorManager : GenericManager<SampleEntity>
     public void FloorsHeightAdjustment()
     {
         floorHeight = floorList[0].transform.GetChild(0).transform.localScale.y;
-        for (int i = 0; i < FloorsInView; i++)
+        floorList[0].transform.position = new Vector3(0,0,0);      
+        for (int i = 1; i < FloorsInView*2; i++)
         {
-            if (i == 0)
-            {
-                floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, floorHeight + 0.5f, floorList[i].transform.position.z);
-            }
-            else if (i % 2 != 0)
-            {
-                floorList[i].transform.position = new Vector3(0, 0, 0);
-            }
-            else if (i % 2 == 0)
-            {
-                floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, -(floorHeight + 0.5f), floorList[i].transform.position.z);
-            }
+            if(i<FloorsInView)
+                floorList[i].transform.position = new Vector3(floorList[0].transform.position.x, floorList[i-1].transform.position.y- floorHeight-1, floorList[0].transform.position.z);    
+            else
+                floorList[i].transform.position = new Vector3(floorList[0].transform.position.x, floorList[i - FloorsInView].transform.position.y + ((FloorsInView) *(floorHeight + 1)), floorList[0].transform.position.z);               
         }
-        for (int i = FloorsInView; i <= (FloorsInView*2)-1; i++)
-        {
-           
-                floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, (floorHeight*i + 0.5f), floorList[i].transform.position.z);           
+
+        //{
+        //    if (i == 0)
+        //    {
+        //        floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, floorHeight + 0.5f, floorList[i].transform.position.z);
+        //    }
+        //    else if (i % 2 != 0)
+        //    {
+        //        floorList[i].transform.position = new Vector3(0, 0, 0);
+        //    }
+        //    else if (i % 2 == 0)
+        //    {
+        //        floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, -(floorHeight + 0.5f), floorList[i].transform.position.z);
+        //    }
+        ////}
+        //for (int i = FloorsInView; i <= (FloorsInView*2)-1; i++)
+        //{
+
+        //    if (i % 2 != 0)
+        //    {
+        //        floorList[i].transform.position = new Vector3(0, 0, 0);
+        //    }
+        //    else if (i % 2 == 0)
+        //    {
+        //        floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, -(floorHeight + 0.5f), floorList[i].transform.position.z);
+        //    }
+        //   // floorList[i].transform.position = new Vector3(floorList[i].transform.position.x, (floorHeight*i + 0.5f), floorList[i].transform.position.z);           
           
-        }
-        FloorParent.transform.position = new Vector3(3.457822f, -3.329794f, -9.04807f);
+        //}
+        //FloorParent.transform.position = new Vector3(3.457822f, -3.329794f, -9.04807f);
     }
     public void GetFloorDisaster()
     {
@@ -109,12 +124,14 @@ public class FloorManager : GenericManager<SampleEntity>
     
     public void ViewLevel()
     {
+        
         if (!isInitialized)
         {
             for (int i = 0; i <= ((FloorsInView * 2)-1); i++)
             {
                  floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
                 floorList[i].transform.name = "Floor" + i;
+                floorList[i].transform.position = center;
 
             }
             FloorsHeightAdjustment();
@@ -128,23 +145,35 @@ public class FloorManager : GenericManager<SampleEntity>
             }
         }
         
-        GetFloorDisaster();
+       // GetFloorDisaster();
     }
     public void ReplaceFloors()
     {
         floorListCurrent = new List<GameObject>();
         floorListNew = new List<GameObject>();
         
-        for (int i = 0; i <= (FloorsInView*2)-1; i++)//assign 123 floors to floorListCurrent and 456 to floorlistnew
+        for (int i = 0; i < (FloorsInView*2); i++)//assign 123 floors to floorListCurrent and 456 to floorlistnew
         {
-           
-            if(i<FloorsInView)
+
+            if (i < FloorsInView)
+            {
                 floorListCurrent.Add(floorList[i]);
+            }
             else
-                floorListNew.Add( floorList[i]);
+            {
+                floorListNew.Add(floorList[i]);
+            }
         }
 
-        floorList = new List<GameObject>(); ;
+        floorList = new List<GameObject>();
+        for (int i = 0; i < (FloorsInView * 2); i++)//assign 123 floors to floorListCurrent and 456 to floorlistnew
+        {
+            if (i < FloorsInView)
+            { 
+
+            }
+        }
+        floorList = new List<GameObject>();
         for (int i = 0; i < floorListNew.Count; i++)//assign new and current to the actual floor list
         {
             if (i < FloorsInView)
@@ -152,18 +181,17 @@ public class FloorManager : GenericManager<SampleEntity>
         }
         for (int i = 0; i < floorListCurrent.Count; i++)//assign new and current to the actual floor list
         {
-            
-                floorList.Add(floorListCurrent[i]);
+            floorList.Add(floorListCurrent[i]);
         }
-       
-        
+
+
         CameraMove();
         ViewLevel();
     }
     public void CameraMove()
     {
         PlayerManager.Instance.player.getPlayerInput = false;
-        float yAxisDifferenceInView = floorList[0].transform.position.y- floorList[FloorsInView].transform.position.y;
+        float yAxisDifferenceInView = floorList[0].transform.position.y- floorList[(FloorsInView*2)-1].transform.position.y;
 
        
         for (int i = ((FloorsInView * 2) - 1); i >=0 ; i--)

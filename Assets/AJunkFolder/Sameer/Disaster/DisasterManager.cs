@@ -5,7 +5,7 @@ using UnityEngine;
 public enum DisasterType { Fire,Burglar,Displacement }
 public class DisasterManager : GenericManager<SampleEntity>
 {
-    public Dictionary<DisasterType, Disaster> disasterPrefabDict = new Dictionary<DisasterType, Disaster>(); //all enemy prefabs
+    //public Dictionary<DisasterType, Disaster> disasterPrefabDict = new Dictionary<DisasterType, Disaster>(); //all enemy prefabs
     // Start is called before the first frame update
     #region
 
@@ -27,24 +27,33 @@ public class DisasterManager : GenericManager<SampleEntity>
     #endregion
     public override void Initialize()
     {
-        foreach (DisasterType dtype in System.Enum.GetValues(typeof(DisasterType))) //fill the resource dictionary with all the prefabs
-        {
-            disasterPrefabDict.Add(dtype, Resources.Load<Disaster>("Scripts/Disaster/" + dtype.ToString())); //Each enum matches the name of the enemy perfectly
-        }
+        //foreach (DisasterType dtype in System.Enum.GetValues(typeof(DisasterType))) //fill the resource dictionary with all the prefabs
+        //{
+        //    disasterPrefabDict.Add(dtype, Resources.Load<Disaster>("Scripts/Disaster/" + dtype.ToString())); //Each enum matches the name of the enemy perfectly
+        //}
 
     }
     public void getRandomDisaster(Transform side)
     {
         float randNumber = Random.value;
       
-       if( randNumber<=0.5f)
+       if( randNumber<=0.25f)
         {
             side.gameObject.AddComponent<Fire>();
         }
-        else if (randNumber > 0.5)
+        else if (randNumber > 0.25 && randNumber<=0.5)
         {
             side.gameObject.AddComponent<Burglar>();
         }
+       else if(randNumber > 0.5 &&randNumber<=0.75)
+        {
+            side.gameObject.AddComponent<Crack>();
+        } 
+        else if(randNumber > 0.75 &&randNumber<=1.0)
+        {
+            side.gameObject.AddComponent<Bugs>();
+        }
+
         
     }
     public void getDisplacementDisaster(Transform floor)

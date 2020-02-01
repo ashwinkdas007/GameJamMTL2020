@@ -25,20 +25,7 @@ public class PlayerController : MonoBehaviour
         // Debug.Log("ASDFADF");
         if (getPlayerInput)
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                if (!(transform.position.y >= Camera_top))
-                    transform.position += Vector3.up * 0.04f;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                if (!(transform.position.y <= Camera_bottom))
-                    transform.position -= Vector3.up * 0.04f;
-            }
-            if (Input.GetKey(KeyCode.A))
-                transform.Rotate(0, -1, 0);
-            if (Input.GetKey(KeyCode.D))
-                transform.Rotate(0, 1, 0);
+            PlayerInput();
         }
     }
     public void PostInitialize()
@@ -49,5 +36,39 @@ public class PlayerController : MonoBehaviour
     public void PhysicsRefresh()
     { 
     }
+
+
+    public void PlayerInput()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (!(transform.position.y >= Camera_top))
+                transform.position += Vector3.up * 0.04f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            if (!(transform.position.y <= Camera_bottom))
+                transform.position -= Vector3.up * 0.04f;
+        }
+        if (Input.GetKey(KeyCode.A))
+            transform.Rotate(0, -1, 0);
+        if (Input.GetKey(KeyCode.D))
+            transform.Rotate(0, 1, 0);
+
+        if (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.Z))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.GetComponentInParent<Displacement>() != null)
+                {
+                    if (hit.transform.parent.position != hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos())
+                        hit.transform.parent.position= hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos();
+                }
+            }
+        }
+    }
+
 
     }
