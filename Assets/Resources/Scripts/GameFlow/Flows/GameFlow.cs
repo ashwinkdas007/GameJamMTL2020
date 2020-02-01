@@ -7,7 +7,7 @@ public class GameFlow : Flow {
 
 	public override void InitializeFlow()
     {
-
+        Debug.Log("MainScene Started");
     }
 
     public override void UpdateFlow(float dt)
