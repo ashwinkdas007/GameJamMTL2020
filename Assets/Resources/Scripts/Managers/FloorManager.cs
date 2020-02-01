@@ -33,6 +33,7 @@ public class FloorManager : GenericManager<SampleEntity>
     float timePass = 0f;
     public float LevelTime = 10f;
     bool isInitialized = false;
+    public int floorNumber = 0;
 
     public override void Initialize()
     {
@@ -129,10 +130,10 @@ public class FloorManager : GenericManager<SampleEntity>
         {
             for (int i = 0; i <= ((FloorsInView * 2)-1); i++)
             {
-                 floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
+                floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
                 floorList[i].transform.name = "Floor" + i;
                 floorList[i].transform.position = center;
-
+                floorNumber++; //counter for floor
             }
             FloorsHeightAdjustment();
             isInitialized = true;

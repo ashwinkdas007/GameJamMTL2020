@@ -7,6 +7,7 @@ public class DisasterManager : GenericManager<SampleEntity>
 {
     //public Dictionary<DisasterType, Disaster> disasterPrefabDict = new Dictionary<DisasterType, Disaster>(); //all enemy prefabs
     // Start is called before the first frame update
+
     #region
 
     private static DisasterManager instance;
@@ -25,6 +26,11 @@ public class DisasterManager : GenericManager<SampleEntity>
         }
     }
     #endregion
+
+    public int sinceLastFire;
+    public int sinceLastCracks;
+    public int sinceLastBugs;
+    public int sinceLastBurglar;
     public override void Initialize()
     {
         //foreach (DisasterType dtype in System.Enum.GetValues(typeof(DisasterType))) //fill the resource dictionary with all the prefabs
