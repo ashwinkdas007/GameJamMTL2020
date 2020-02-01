@@ -13,7 +13,7 @@ public class Flow  {
 
     public virtual void UpdateFlow(float dt)
     {
-        PlayerManager.Instance.Refresh();
+        PlayerManager.Instance.Refresh(dt);
 
     }
 

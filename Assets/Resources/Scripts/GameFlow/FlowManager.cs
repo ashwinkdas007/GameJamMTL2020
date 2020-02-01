@@ -31,22 +31,24 @@ public class FlowManager  {
 
     public void InitializeFlowManager(SceneNames initialScene)
     {
-        PlayerManager.Instance.Initialize();
 
         currentScene = initialScene;
         currentFlow = CreateFlow(initialScene);
         flowInitialized = true;
         currentFlow.InitializeFlow();
+        FloorManager.Instance.Initialize();
+        PlayerManager.Instance.Initialize();
 
     }
 
     public void Refresh(float dt)
     {
-        PlayerManager.Instance.Refresh();
 
         if (currentFlow != null && flowInitialized)
             currentFlow.UpdateFlow(dt);
-        PlayerManager.Instance.Refresh();
+
+        FloorManager.Instance.Refresh(dt);
+        PlayerManager.Instance.Refresh(dt);
 
     }
 
@@ -54,6 +56,9 @@ public class FlowManager  {
     {
         if (currentFlow != null && flowInitialized)
             currentFlow.FixedUpdateFlow(dt);
+
+        FloorManager.Instance.FixedRefresh();
+
     }
 
     public void ChangeFlows(SceneNames _flowToLoad)
