@@ -9,16 +9,17 @@ public class MainEntry : MonoBehaviour {
     {
         GameObject.DontDestroyOnLoad(gameObject);
         FlowManager.Instance.InitializeFlowManager((FlowManager.SceneNames)System.Enum.Parse(typeof(FlowManager.SceneNames), UnityEngine.SceneManagement.SceneManager.GetActiveScene().name));
+        
     }
    
     public void Update()
     {
-        FlowManager.Instance.Update(Time.deltaTime);
+        FlowManager.Instance.Refresh(Time.deltaTime);
     }
 
     public void FixedUpdate()
     {
-        FlowManager.Instance.FixedUpdate(Time.fixedDeltaTime);
+        FlowManager.Instance.FixedRefresh(Time.fixedDeltaTime);
     }
 
 

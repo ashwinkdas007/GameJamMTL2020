@@ -20,6 +20,20 @@ public class GenericManager<T> where T : IUpdatable  {
     {
 
     }
+    public virtual void Refresh(float dt)
+    {
+
+    } public virtual void FixedRefresh()
+    {
+    }
+    public virtual void PhysicsRefresh()
+    {
+
+    }
+    public virtual void PostInitialize()
+    {
+
+    }
 
     public virtual void UpdateManager(float dt)
     {
