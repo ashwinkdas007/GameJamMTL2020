@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager
+public class UIManager: MonoBehaviour
 {
     #region Singleton
     private static UIManager instance;
@@ -14,9 +14,9 @@ public class UIManager
     Player player;
     public int livesCount = 3;
     public RawImage[] Lives;
-    public void Initialize(Player player)
+    public void Initialize(Player _player)
     {
-
+        player = _player;
     }
 
     public void PhysicsRefresh()
@@ -29,9 +29,9 @@ public class UIManager
         
     }
 
-    public void Refresh()
+    public void Refresh(Player _player)
     {
-       
+        player = _player;
     }
 
     public void DecrementLives()

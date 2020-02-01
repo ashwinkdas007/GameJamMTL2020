@@ -14,18 +14,19 @@ public class PlayerManager {
     public void Initialize()
     {
         GameObject newPlayer = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/player"));
+        player = newPlayer.GetComponent<Player>();
         player.Initialize();
         
     }
     public void Update(float dt)
     {
-        if (player)
+        if (player.isAlive)
             player.UpdatePlayer(dt);
     }
 
     public void FixedUpdate(float dt)
     {
-        if (player)
+        if (player.isAlive)
             player.FixedUpdatePlayer(dt);
     }
 

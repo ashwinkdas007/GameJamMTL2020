@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool isAlive = true;
-    public void Initialize()    { Debug.Log("Player"); }
+    public bool isAlive;
+    public void Initialize()    {
+        isAlive = true;
+        //Debug.Log("Player"); 
+    }
     public void PostInitialize() {   }
     public void UpdatePlayer(float dt) {     }
     public void FixedUpdatePlayer(float dt) {     }
 
     private void OnCollisionEnter(Collision collision)
     {
+
         PlayerDestroy();
     }
 
