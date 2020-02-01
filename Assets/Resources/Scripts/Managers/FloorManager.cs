@@ -108,17 +108,17 @@ public class FloorManager : GenericManager<SampleEntity>
     {
         foreach (Transform floor in FloorParent.transform)
         {
-            if (Random.value > 0.5f)
-            {
+            //if (Random.value > 0.5f)
+            //{
                 foreach (Transform side in floor)
                 {
                     DisasterManager.Instance.getRandomDisaster(side);
                 }
-            }
-            else
-            {
-                DisasterManager.Instance.getDisplacementDisaster(floor);
-            }
+           // }
+            //else
+            //{
+            //   // DisasterManager.Instance.getDisplacementDisaster(floor);
+            //}
         }
 
     }
@@ -146,7 +146,7 @@ public class FloorManager : GenericManager<SampleEntity>
             }
         }
         
-       // GetFloorDisaster();
+        GetFloorDisaster();
     }
     public void ReplaceFloors()
     {

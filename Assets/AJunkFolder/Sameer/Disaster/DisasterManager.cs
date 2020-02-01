@@ -31,6 +31,7 @@ public class DisasterManager : GenericManager<SampleEntity>
     public int sinceLastCracks;
     public int sinceLastBugs;
     public int sinceLastBurglar;
+    public Fire fire;
     public override void Initialize()
     {
         //foreach (DisasterType dtype in System.Enum.GetValues(typeof(DisasterType))) //fill the resource dictionary with all the prefabs
@@ -46,6 +47,8 @@ public class DisasterManager : GenericManager<SampleEntity>
        if( randNumber<=0.25f)
         {
             side.gameObject.AddComponent<Fire>();
+            fire = side.GetComponent<Fire>();
+            fire.Initialize();
         }
         else if (randNumber > 0.25 && randNumber<=0.5)
         {
