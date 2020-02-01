@@ -33,6 +33,7 @@ public class FloorManager : GenericManager<SampleEntity>
     float timePass = 0f;
     public float LevelTime = 10f;
     bool isInitialized = false;
+    public int floorNumber = 0;
 
     public override void Initialize()
     {
@@ -107,17 +108,17 @@ public class FloorManager : GenericManager<SampleEntity>
     {
         foreach (Transform floor in FloorParent.transform)
         {
-            if (Random.value > 0.5f)
-            {
+            //if (Random.value > 0.5f)
+            //{
                 foreach (Transform side in floor)
                 {
                     DisasterManager.Instance.getRandomDisaster(side);
                 }
-            }
-            else
-            {
-                DisasterManager.Instance.getDisplacementDisaster(floor);
-            }
+           // }
+            //else
+            //{
+            //   // DisasterManager.Instance.getDisplacementDisaster(floor);
+            //}
         }
 
     }
@@ -129,10 +130,10 @@ public class FloorManager : GenericManager<SampleEntity>
         {
             for (int i = 0; i <= ((FloorsInView * 2)-1); i++)
             {
-                 floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
+                floorList.Add(GameObject.Instantiate(floor, FloorParent.transform));
                 floorList[i].transform.name = "Floor" + i;
                 floorList[i].transform.position = center;
-
+                floorNumber++; //counter for floor
             }
             FloorsHeightAdjustment();
             isInitialized = true;
@@ -145,7 +146,7 @@ public class FloorManager : GenericManager<SampleEntity>
             }
         }
         
-       // GetFloorDisaster();
+        GetFloorDisaster();
     }
     public void ReplaceFloors()
     {
