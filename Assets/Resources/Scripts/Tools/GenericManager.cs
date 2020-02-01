@@ -22,12 +22,16 @@ public class GenericManager<T> where T : IUpdatable  {
     }
     public virtual void Refresh()
     {
+    }
+    public virtual void PhysicsRefresh()
+    {
 
     }
     public virtual void PostInitialize()
     {
 
     }
+
     public virtual void UpdateManager(float dt)
     {
         UpdateStackElements();

@@ -44,4 +44,17 @@ public class PlayerController : MonoBehaviour
     { 
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        PlayerDestroy();
     }
+
+    private void PlayerDestroy()
+    {
+        PlayerManager.Instance.PlayerDied();
+        isAlive = false;
+    }
+}
+

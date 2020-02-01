@@ -28,9 +28,12 @@ public class PlayerManager : GenericManager<SampleEntity>
     public override void Initialize()
     {
 
-        player = GameObject.FindObjectOfType<PlayerController>();
+      //  player = GameObject.FindObjectOfType<PlayerController>();
         //player.transform.localEulerAngles = 
-        player.Initialize();  //isAlive = true
+        
+        GameObject newPlayer = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Player"));
+        player = newPlayer.GetComponent<PlayerController>();
+        player.Initialize();
     }
 
     public override void PostInitialize()
@@ -44,9 +47,35 @@ public class PlayerManager : GenericManager<SampleEntity>
     {
         //Debug.Log("Refresh");
         if (player.isAlive)
+      
             player.Refresh();
     }
+    public override void PhysicsRefresh()
+    {
+        //Debug.Log("Refresh");
+        if (player.isAlive)
+            player.PhysicsRefresh();
+    }
+    public void PlayerDied()
+    {
+        player.gameObject.SetActive(false);
+        player.isAlive = false;
+        UIManager.Instance.DecrementLives();
+        if (UIManager.Instance.livesCount > 0)
+        {
+            SpawnPlayer();
+        }
+        else
+        {
+            Debug.Log("PlayerLost");
+        }
+    }
 
-    
+    private void SpawnPlayer()
+    {
+        Initialize();
+    }
+
+
 }
 
