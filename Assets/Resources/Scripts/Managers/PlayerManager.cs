@@ -40,7 +40,7 @@ public class PlayerManager : GenericManager<SampleEntity>
 
     
 
-    public override void Refresh()
+    public override void Refresh(float dt)
     {
         //Debug.Log("Refresh");
         if (player.isAlive)
