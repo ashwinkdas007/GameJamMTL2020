@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     public float Camera_top;//= FloorManager.Instance.floorList[2].transform.position.y;
     public float Camera_bottom;// = FloorManager.Instance.floorList[0].transform.position.y;
     [HideInInspector] public bool isAlive;
-    public bool EnablePlayerInput { get; set; }
+
+    public bool EnablePlayerInput = true;
     public void Initialize()
     {
         GameObject.FindGameObjectWithTag("MainCamera").transform.position=new Vector3(0, FloorManager.Instance.floorList[1].transform.position.y, -Radious);
