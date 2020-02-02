@@ -101,14 +101,11 @@ public class PlayerController : MonoBehaviour
 
                     Destroy(hit.collider.gameObject.GetComponentInChildren<Fire>(), 2f);
                 }
-                Debug.Log(hit.collider.name);
                 if (hit.collider.gameObject.GetComponentInParent<Fire>())
                 {
-                    
-                    if (hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>())
-                        Destroy(hit.collider.gameObject.transform.parent.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
+                    Destroy(hit.collider.gameObject.transform.parent.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
 
-                    Destroy(hit.collider.gameObject.GetComponentInParent<Fire>(), 2f);
+                    Destroy(hit.collider.gameObject.transform.parent.GetComponent<Fire>(), 2f);
                 }
             }
         }
