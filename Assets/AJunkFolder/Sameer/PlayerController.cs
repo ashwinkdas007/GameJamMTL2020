@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     public void PlayerInput()
     {
         CrackFix();
+        DisplacementFix();
+
         if (Input.GetKey(KeyCode.W))
         {
             if (!(transform.position.y >= Camera_top))
@@ -58,46 +60,6 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(0, -1, 0);
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(0, 1, 0);
-
-
-
-        //For Displacement
-        if (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.Z))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject.GetComponentInParent<Displacement>() != null)
-                {
-                    if (hit.transform.parent.position != hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos())
-                         
-                    hit.transform.parent.position = Vector3.Lerp(hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos(), hit.transform.parent.position, 50f * Time.deltaTime);
-                }
-            }
-        }
-        //Debug.Log(" hit.transform.position IN BEGINING" + hit.transform.position+"Hit NAme"+hit.transform.name);
-
-        //Transform temp = hit.transform;
-        // while (!temp.CompareTag("Floor"))
-        // {
-        //     temp = temp.parent.transform;
-
-        // }
-        // if (temp.GetComponent<Displacement>() != null)
-        // {
-        //     Debug.Log(" hit.transform.position" + hit.transform.position + "Hit NAme" + hit.transform.name);
-        //     Debug.Log(temp.position + "    " + temp.name);
-
-        //     Vector3 dirToPush = (temp.position - hit.collider.transform.position).normalized;
-        //     Debug.Log(dirToPush);
-        //     Rigidbody rb = temp.GetComponent<Rigidbody>();
-        //     if(Vector3.SqrMagnitude( hit.transform.GetComponent<Displacement>().GetOldPos()- hit.collider.transform.position)<5)
-        //     {
-        //         rb.AddForce(dirToPush*2f, ForceMode.Force);                            
-        //     }
-
-        // }
     }
 
     void CrackFix()
@@ -113,6 +75,24 @@ public class PlayerController : MonoBehaviour
                     GameObject crack = hit.collider.gameObject.transform.GetChild(0).gameObject;
                     Destroy(hit.collider.gameObject.GetComponent<Crack>());
                     Destroy(crack);
+                }
+            }
+        }
+    }
+
+    void DisplacementFix()
+    {
+        if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.Z))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.GetComponentInParent<Displacement>())
+                {      
+                    hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position = Vector3.Lerp(hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position,
+                        new Vector3(0, hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position.y, 0), 50f * Time.deltaTime);
+                    Destroy(hit.transform.gameObject.GetComponentInParent<Displacement>(), 2f);
                 }
             }
         }
