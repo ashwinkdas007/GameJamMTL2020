@@ -73,19 +73,14 @@ public class FloorManager : GenericManager<SampleEntity>
     
     public void GetFloorDisaster(Transform floor)
     {
-        
-        //foreach (Transform floor in FloorParent.transform)
-
-                foreach (Transform side in floor)
-                {
-                    if (Random.value > 0.5f)
-                        DisasterManager.Instance.getRandomDisaster(side);
-                }
-            //else
-            //{
-            //    //DisasterManager.Instance.getDisplacementDisaster(floor);
-            //}
-
+ 
+        foreach (Transform side in floor)
+        {
+            if (Random.value > 0.5f)
+                DisasterManager.Instance.getRandomDisaster(side);
+        }
+        if(Random.value>0.7f)       
+                DisasterManager.Instance.getDisplacementDisaster(floor);            
 
     }
     
@@ -98,6 +93,9 @@ public class FloorManager : GenericManager<SampleEntity>
 
                 int prefabNum = Random.Range(0, 3);
                 floorList.Add(GameObject.Instantiate(ScenePrefabs[prefabNum], center, Quaternion.identity, FloorParent.transform));
+                
+                int RandVal = Random.Range(1,4);               
+                floorList[i].transform.rotation = Quaternion.Euler(0, 90*RandVal, 0);
               
 
                 
@@ -123,14 +121,15 @@ public class FloorManager : GenericManager<SampleEntity>
         for (int i = 1; i < floorList.Count; i++)
         {
             Vector3 pos = floorList[i].transform.position;
-            floorList[i].transform.position = new Vector3(pos.x, pos.y + (i * floorHeight) + i, pos.z);
+
+            floorList[i].transform.position = new Vector3(pos.x, pos.y + (i * floorHeight), pos.z);
         }
     }
     public void ReplaceFloors(float dt)
     {
 
         GameObject bottomFloor = floorList[0];
-        float teleportHeightOffset = (floorHeight * floorList.Count) + floorList.Count;
+        float teleportHeightOffset = (floorHeight * floorList.Count);
         if (bottomFloor.transform.position.y <= -11)
         {
             bottomFloor.transform.position = new Vector3(bottomFloor.transform.position.x, bottomFloor.transform.position.y + teleportHeightOffset, bottomFloor.transform.position.z);
