@@ -33,7 +33,7 @@ public class FloorManager : GenericManager<SampleEntity>
     float timePass = 0f;
     public float LevelTime = 10f;
     bool isInitialized = false;
-    public int floorNumber = 100;
+    public int floorNumber = 0;
 
     public override void Initialize()
     {
