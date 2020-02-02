@@ -73,19 +73,14 @@ public class FloorManager : GenericManager<SampleEntity>
     
     public void GetFloorDisaster(Transform floor)
     {
-        
-        //foreach (Transform floor in FloorParent.transform)
-
-                foreach (Transform side in floor)
-                {
-                    if (Random.value > 0.5f)
-                        DisasterManager.Instance.getRandomDisaster(side);
-                }
-            //else
-            //{
-            //    //DisasterManager.Instance.getDisplacementDisaster(floor);
-            //}
-
+ 
+        foreach (Transform side in floor)
+        {
+            if (Random.value > 0.5f)
+                DisasterManager.Instance.getRandomDisaster(side);
+        }
+        if(Random.value>0.7f)       
+                DisasterManager.Instance.getDisplacementDisaster(floor);            
 
     }
     
@@ -98,6 +93,9 @@ public class FloorManager : GenericManager<SampleEntity>
 
                 int prefabNum = Random.Range(0, 3);
                 floorList.Add(GameObject.Instantiate(ScenePrefabs[prefabNum], center, Quaternion.identity, FloorParent.transform));
+                
+                int RandVal = Random.Range(1,4);               
+                floorList[i].transform.rotation = Quaternion.Euler(0, 90*RandVal, 0);
               
 
                 

@@ -15,12 +15,12 @@ public class Displacement : Disaster
             if (Random.value > 0.5f)
             {
                 //-
-                newPosition += new Vector3(-Random.Range(0.5f,5f),0,0);
+                newPosition += new Vector3(-Random.Range(0.5f,3f),0,0);
             }
             else
             {
                 //+
-                newPosition += new Vector3(Random.Range(0.5f, 5f), 0, 0);
+                newPosition += new Vector3(Random.Range(0.5f, 3f), 0, 0);
 
             }
             if (Random.value>0.8f)
@@ -29,13 +29,12 @@ public class Displacement : Disaster
                 if (Random.value > 0.5f)
                 {
                     //-
-                    newPosition += new Vector3(0,0,-Random.Range(0.5f, 5f));
+                    newPosition += new Vector3(0,0,-Random.Range(0.5f, 3f));
                 }
                 else
                 {
                     //+
-                    newPosition += new Vector3(0,0,Random.Range(0.5f, 5f));
-
+                    newPosition += new Vector3(0,0,Random.Range(0.5f, 3f));
                 }
             }
         }
@@ -45,12 +44,12 @@ public class Displacement : Disaster
             if (Random.value > 0.5f)
             {
                 //-
-                newPosition += new Vector3(0, 0, -Random.Range(0.5f, 5f));
+                newPosition += new Vector3(0, 0, -Random.Range(0.5f, 3f));
             }
             else
             {
                 //+
-                newPosition += new Vector3(0, 0, Random.Range(0.5f, 5f));
+                newPosition += new Vector3(0, 0, Random.Range(0.5f, 3f));
             }
             if (Random.value > 0.8f)
             {
@@ -58,12 +57,12 @@ public class Displacement : Disaster
                 if (Random.value > 0.5f)
                 {
                     //-
-                    newPosition += new Vector3(-Random.Range(0.5f, 5f), 0, 0);
+                    newPosition += new Vector3(-Random.Range(0.5f, 3f), 0, 0);
                 }
             else
                 {
                     //+
-                    newPosition += new Vector3(Random.Range(0.5f, 5f), 0, 0);
+                    newPosition += new Vector3(Random.Range(0.5f, 3f), 0, 0);
 
                 }
             }
