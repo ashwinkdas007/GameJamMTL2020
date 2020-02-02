@@ -32,6 +32,7 @@ public class DisasterManager : GenericManager<SampleEntity>
     public int sinceLastBugs;
     public int sinceLastBurglar;
     public Fire fire;
+    public Crack crack;
     public override void Initialize()
     {
         //foreach (DisasterType dtype in System.Enum.GetValues(typeof(DisasterType))) //fill the resource dictionary with all the prefabs
@@ -66,6 +67,8 @@ public class DisasterManager : GenericManager<SampleEntity>
        else if(randNumber > 0.5 &&randNumber<=0.75)
         {
             side.gameObject.AddComponent<Crack>();
+            crack = side.GetComponent<Crack>();
+            crack.Initialize();
         } 
         else if(randNumber > 0.75 &&randNumber<=1.0)
         {

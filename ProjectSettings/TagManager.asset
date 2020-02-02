@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Center
   - Floor
+  - WindowSide
   layers:
   - Default
   - TransparentFX
