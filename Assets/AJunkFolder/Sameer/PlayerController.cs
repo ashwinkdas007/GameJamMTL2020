@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
         {
             PlayerInput(dt);
         }
+        if (life <= 0)
+        {
+            isAlive = false;
+        }
 
     }
     public void PostInitialize()
@@ -108,7 +112,20 @@ public class PlayerController : MonoBehaviour
                     if (hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>())
                         Destroy(hit.collider.gameObject.transform.parent.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
 
+
+
+                    Transform temp = hit.transform;
+                    while (!temp.CompareTag("Floor"))
+                    {
+                        temp = temp.parent;
+                    }
+
+
+                    temp.GetComponentInParent<Floor>().disasterCount--;
+
+
                     Destroy(hit.collider.gameObject.GetComponentInParent<Fire>(), 2f);
+
                 }
             }
         }
@@ -132,6 +149,14 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.collider.gameObject.GetComponentInChildren<Crack>())
                 {
+                    Transform temp = hit.transform;
+                    while (!temp.CompareTag("Floor"))
+                    {
+                        temp = temp.parent;
+                    }
+
+
+                    temp.GetComponentInParent<Floor>().disasterCount--;
                     Destroy(hit.collider.gameObject.GetComponentInChildren<Crack>(), 1.5f);
                     Destroy(hit.collider.gameObject.transform.GetComponentInChildren<SpriteRenderer>().gameObject, 1.5f);
                 }
@@ -151,6 +176,15 @@ public class PlayerController : MonoBehaviour
                 {      
                     hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position = Vector3.Lerp(hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position,
                     new Vector3(0, hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position.y, 0), 50f * Time.deltaTime);
+
+                    Transform temp= hit.transform;
+                    while (!temp.CompareTag("Floor"))
+                    {
+                        temp = temp.parent;
+                    }
+
+
+                    temp.GetComponentInParent<Floor>().disasterCount--;
                     Destroy(hit.transform.gameObject.GetComponentInParent<Displacement>(), 2f);
                 }
             }

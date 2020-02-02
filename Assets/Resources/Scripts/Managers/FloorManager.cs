@@ -140,20 +140,33 @@ public class FloorManager : GenericManager<SampleEntity>
 
         if (bottomFloor.transform.position.y <= -11)
         {
-            if (bottomFloor.disasterCount <= 0)
-                PlayerManager.Instance.player.scoreCount++;
-            else
-                PlayerManager.Instance.player.life--;
+
+            bool problemExists = false;
+            //Debug.Log("bottomFloor.disasterCount"+ bottomFloor.disasterCount);
+            
             
             Disaster d;
             if(bottomFloor.TryGetComponent<Disaster>(out d))
-                GameObject.Destroy(d);           
+            {
+                problemExists = true;
+                GameObject.Destroy(d);
+            }
+                         
                 
             for (int i = 0; i < bottomFloor.transform.childCount; i++)
             {
                 if (bottomFloor.transform.GetChild(i).TryGetComponent<Disaster>(out d))
+                {
+                    problemExists = true;
                     GameObject.Destroy(d);
+                }
             }
+
+            if (problemExists)
+                PlayerManager.Instance.player.life--;
+            else
+                PlayerManager.Instance.player.scoreCount++;
+
 
             bottomFloor.disasterCount = 0;
             bottomFloor.transform.position = new Vector3(bottomFloor.transform.position.x, bottomFloor.transform.position.y + teleportHeightOffset, bottomFloor.transform.position.z);
