@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
                 if (hit.transform.gameObject.GetComponentInParent<Displacement>())
                 {      
                     hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position = Vector3.Lerp(hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position,
-                        new Vector3(0, hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position.y, 0), 50f * Time.deltaTime);
+                    new Vector3(0, hit.transform.gameObject.GetComponentInParent<Displacement>().transform.position.y, 0), 50f * Time.deltaTime);
                     Destroy(hit.transform.gameObject.GetComponentInParent<Displacement>(), 2f);
                 }
             }

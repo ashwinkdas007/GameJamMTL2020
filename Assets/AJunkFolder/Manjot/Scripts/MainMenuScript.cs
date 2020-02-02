@@ -9,7 +9,7 @@ public class MainMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SoundManager.Instance.PlayMusic("Jazz_BossaNovaTropics_Loop", gameObject);
     }
 
     // Update is called once per frame
