@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             GameObject waterEffect = Instantiate(water, transform.GetChild(0).transform.position, Quaternion.LookRotation(transform.forward)).gameObject;
             waterEffect.transform.Rotate(new Vector3(0, waterEffect.transform.rotation.y - 90, 0));
             
-            Destroy(waterEffect, 4f);
+            Destroy(waterEffect, 3f);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
