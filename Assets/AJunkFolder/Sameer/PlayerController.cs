@@ -78,16 +78,18 @@ public class PlayerController : MonoBehaviour
         {
             GameObject waterEffect = Instantiate(water, transform.GetChild(0).transform.position, Quaternion.LookRotation(transform.forward)).gameObject;
             waterEffect.transform.Rotate(new Vector3(0, waterEffect.transform.rotation.y - 90, 0));
+            
             Destroy(waterEffect, 4f);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.GetComponent<Fire>())
+                waterEffect.transform.position = new Vector3(transform.GetChild(0).transform.position.x, hit.point.y + 3, transform.GetChild(0).transform.position.z);
+                if (hit.collider.gameObject.GetComponentInChildren<Fire>())
                 {
                     Destroy(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
-                    Destroy(hit.collider.gameObject.GetComponent<Fire>(), 2f);
+                    Destroy(hit.collider.gameObject.GetComponentInChildren<Fire>(), 2f);
                 }
             }
         }
@@ -109,11 +111,10 @@ public class PlayerController : MonoBehaviour
 
                 Destroy(hammerObj, 2f);
 
-                if (hit.collider.gameObject.GetComponent<Crack>())
+                if (hit.collider.gameObject.GetComponentInChildren<Crack>())
                 {
-                    GameObject crack = hit.collider.gameObject.transform.GetComponentInChildren<SpriteRenderer>().gameObject;
-                    Destroy(hit.collider.gameObject.GetComponent<Crack>(), 1.5f);
-                    Destroy(crack, 1.5f);
+                    Destroy(hit.collider.gameObject.GetComponentInChildren<Crack>(), 1.5f);
+                    Destroy(hit.collider.gameObject.transform.GetComponentInChildren<SpriteRenderer>().gameObject, 1.5f);
                 }
             }
         }
