@@ -33,7 +33,7 @@ public class Crack : Disaster
         //    crackRotate.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);         
        
         
-        crackRotate.transform.localScale = crackRotate.transform.localScale * 1 / 8;
+        crackRotate.transform.localScale = crackRotate.transform.localScale * 1 / 10;
 
     }
 }
