@@ -48,7 +48,7 @@ public class Fire : Disaster
                 firePosition = new Vector3(Random.Range(-3.5f, 3.5f), parentYCoord + Random.Range(-3.5f, 3.5f), zCoord - 0.5f);
 
         }
-        GameObject.Instantiate(fire, firePosition, Quaternion.identity);
+        GameObject.Instantiate(fire, firePosition, Quaternion.identity, this.transform.parent);
 
     }
 }
