@@ -88,7 +88,11 @@ public class PlayerController : MonoBehaviour
                 {
                     Destroy(hit.collider.gameObject.GetComponentInParent<Fire>().transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
                     Destroy(hit.collider.gameObject.GetComponentInParent<Fire>(), 2f);
-
+                }
+                if (hit.collider.gameObject.GetComponent<Fire>())
+                {
+                    Destroy(hit.collider.gameObject.GetComponent<Fire>().transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
+                    Destroy(hit.collider.gameObject.GetComponent<Fire>(), 2f);
                 }
             }
         }
