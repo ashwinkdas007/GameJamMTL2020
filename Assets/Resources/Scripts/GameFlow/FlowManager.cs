@@ -41,7 +41,7 @@ public class FlowManager  {
         SoundManager.Instance.Initialize();
 
     }
-
+    
     public void Refresh(float dt)
     {
 
@@ -96,6 +96,14 @@ public class FlowManager  {
         currentFlow.InitializeFlow();
         flowInitialized = true;
         SceneManager.sceneLoaded -= SceneLoaded; //Clear the event system
-        
+
+    }
+    public void  restartFlow()
+    {
+        FloorManager.Instance.setNull();
+        PlayerManager.Instance.setNull();
+        //FloorManager.Instance.Initialize();
+        //PlayerManager.Instance.Initialize();
+
     }
 }

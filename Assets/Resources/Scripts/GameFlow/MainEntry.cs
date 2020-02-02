@@ -8,7 +8,7 @@ public class MainEntry : MonoBehaviour {
     public void Start()
     {
         //Cursor.SetCursor(Resources.Load<Texture2D>("cursor"), new Vector2(0, 0), CursorMode.Auto);
-        GameObject.DontDestroyOnLoad(gameObject);
+        
         FlowManager.Instance.InitializeFlowManager((FlowManager.SceneNames)System.Enum.Parse(typeof(FlowManager.SceneNames), UnityEngine.SceneManagement.SceneManager.GetActiveScene().name));
         
     }

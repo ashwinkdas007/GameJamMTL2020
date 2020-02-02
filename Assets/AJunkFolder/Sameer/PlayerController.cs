@@ -51,7 +51,12 @@ public class PlayerController : MonoBehaviour
         }
 
         if (!isAlive)
+        {
+            GameObject.FindObjectOfType<LifeMAnager>().enabled = false;
+            FlowManager.Instance.restartFlow();
             SceneManager.LoadScene(0);
+        }
+            
 
 
     }

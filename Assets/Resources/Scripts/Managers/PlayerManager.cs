@@ -38,8 +38,10 @@ public class PlayerManager : GenericManager<SampleEntity>
         player.PostInitialize();
     }
 
-    
-
+    public void setNull()
+    {
+        instance = null;
+    }
     public override void Refresh(float dt)
     {
         //Debug.Log("Refresh");

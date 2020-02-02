@@ -21,15 +21,19 @@ public class SoundManager
 
     public void Initialize()
     {
+        return; 
         resourceAudioClips = Resources.LoadAll<AudioClip>("Sounds");
         for (int i = 0; i<resourceAudioClips.Length;i++)
         {
+            
             audioDict.Add(resourceAudioClips[i].name, resourceAudioClips[i]);
         } 
     }
 
     public void PlayMusic(string name, GameObject go)
     {
+        return; 
+
         go.AddComponent<AudioSource>();
         AudioSource activeSource = go.GetComponent<AudioSource>();
        // activeSource.clip = audioDict[name];

@@ -22,6 +22,11 @@ public class FloorManager : GenericManager<SampleEntity>
     }
     #endregion Singleton
 
+    public void setNull()
+    {
+        instance = null;
+    }
+
     GameObject floor;
     GameObject FloorParent;
     public List<Floor> floorList = new List<Floor>();
@@ -65,6 +70,12 @@ public class FloorManager : GenericManager<SampleEntity>
         lerpActivationCounter += dt;
         if(lerpActivationCounter >= lerpActivationTime)
             LerpFloorsDown(dt);
+
+
+        if(!PlayerManager.Instance.player.isAlive)
+            isInitialized = false;
+
+
     }
     public override void FixedRefresh()
     {
