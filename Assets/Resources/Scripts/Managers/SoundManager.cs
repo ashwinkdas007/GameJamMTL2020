@@ -32,7 +32,7 @@ public class SoundManager
     {
         go.AddComponent<AudioSource>();
         AudioSource activeSource = go.GetComponent<AudioSource>();
-        activeSource.clip = audioDict[name];
+       // activeSource.clip = audioDict[name];
         activeSource.volume = 1;
         activeSource.Play();
         activeSource.loop = true;

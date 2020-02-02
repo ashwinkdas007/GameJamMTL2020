@@ -130,8 +130,22 @@ public class FloorManager : GenericManager<SampleEntity>
 
         GameObject bottomFloor = floorList[0];
         float teleportHeightOffset = (floorHeight * floorList.Count);
+
         if (bottomFloor.transform.position.y <= -11)
         {
+            
+            Disaster d;
+            if(bottomFloor.TryGetComponent<Disaster>(out d))            
+                GameObject.Destroy(d);
+            
+           
+            for (int i = 0; i < bottomFloor.transform.childCount; i++)
+            {
+                if (bottomFloor.transform.GetChild(i).TryGetComponent<Disaster>(out d))
+                    GameObject.Destroy(d);
+            }
+
+
             bottomFloor.transform.position = new Vector3(bottomFloor.transform.position.x, bottomFloor.transform.position.y + teleportHeightOffset, bottomFloor.transform.position.z);
             floorList.RemoveAt(0);
             floorList.Add(bottomFloor);
@@ -145,13 +159,13 @@ public class FloorManager : GenericManager<SampleEntity>
 
     public void LerpFloorsDown(float dt)
     {
-        float distCovered = dt * 0.6f;
+        float distCovered = dt * 5.3f;
         lerpTimer += dt;
         if(lerpTimer <= lerpCooldown)
         {
             PlayerManager.Instance.player.EnablePlayerInput = false;
             Vector3 floorParentPos = FloorParent.transform.position;
-            float heightOffset = ((floorHeight * NoOfFloorGroups) + NoOfFloorsInView);
+            float heightOffset = ((floorHeight * NoOfFloorGroups));
             FloorParent.transform.position = Vector3.Lerp(floorParentPos, new Vector3(floorParentPos.x, floorParentPos.y - heightOffset, floorParentPos.z),  distCovered / heightOffset);
         }
         else
