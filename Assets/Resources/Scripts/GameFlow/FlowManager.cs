@@ -38,6 +38,7 @@ public class FlowManager  {
         currentFlow.InitializeFlow();
         FloorManager.Instance.Initialize();
         PlayerManager.Instance.Initialize();
+        SoundManager.Instance.Initialize();
 
     }
 
