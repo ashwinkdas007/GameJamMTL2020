@@ -31,14 +31,14 @@ public class Crack : Disaster
             if (xCoord > 0)
             {
                 //crack.transform.Rotate(0, 90, 0, Space.Self);
-                crack.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y * 90, transform.rotation.z);
+                crack.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
                 //crack.transform.RotateAround(crack.transform.position, transform.up, 90);
                 crackPosition = new Vector3(xCoord + 0.01f, parentYCoord + Random.Range(-1.8f, 1.8f), Random.Range(-1.8f, 1.8f));
             }
             else
             {
                 //crack.transform.Rotate(0, 90, 0, Space.Self);
-                crack.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y * 90, transform.rotation.z);
+                crack.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
                 //crack.transform.RotateAround(crack.transform.position, transform.up, 90);
                 crackPosition = new Vector3(xCoord - 0.01f, parentYCoord + Random.Range(-1.8f, 1.8f), Random.Range(-1.8f, 1.8f));
             }
