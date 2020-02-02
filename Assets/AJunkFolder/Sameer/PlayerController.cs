@@ -13,21 +13,24 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem water;
     [HideInInspector] public bool isAlive;
 
+    Vector3 initialMiddleFloorPos;
+
     public bool EnablePlayerInput = true;
     public void Initialize()
     {
-        GameObject.FindGameObjectWithTag("MainCamera").transform.position=new Vector3(0, FloorManager.Instance.floorList[1].transform.position.y, -Radious);
-        Camera_top = FloorManager.Instance.floorList[1].transform.position.y+9;
-        Camera_bottom = FloorManager.Instance.floorList[1].transform.position.y-9;
+        initialMiddleFloorPos = FloorManager.Instance.floorList[1].transform.position;
+        transform.position = new Vector3(0, initialMiddleFloorPos.y, -Radious);
+        Camera_top = initialMiddleFloorPos.y + 3;
+        Camera_bottom = initialMiddleFloorPos.y - 3;
         isAlive = true;
     }
 
-    public void Refresh()
+    public void Refresh(float dt)
     {
         // Debug.Log("ASDFADF");
         if (EnablePlayerInput)
         {
-            PlayerInput();
+            PlayerInput(dt);
         }
 
     }
@@ -42,25 +45,26 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void PlayerInput()
+    public void PlayerInput(float dt)
     {
         CrackFix();
         DisplacementFix();
         FireExtunguish();
+
         if (Input.GetKey(KeyCode.W))
         {
             if (!(transform.position.y >= Camera_top))
-                transform.position += Vector3.up * 0.04f;
+                transform.position += Vector3.up * 5 * dt;
         }
         if (Input.GetKey(KeyCode.S))
         {
             if (!(transform.position.y <= Camera_bottom))
-                transform.position -= Vector3.up * 0.04f;
+                transform.position -= Vector3.up * 5 * dt;
         }
         if (Input.GetKey(KeyCode.A))
-            transform.Rotate(0, -1, 0);
+            transform.RotateAround(Vector3.zero, Vector3.up, 5);
         if (Input.GetKey(KeyCode.D))
-            transform.Rotate(0, 1, 0);
+            transform.RotateAround(Vector3.zero, Vector3.up, -5);
     }
 
     void FireExtunguish()

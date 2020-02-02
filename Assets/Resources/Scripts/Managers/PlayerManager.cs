@@ -44,7 +44,7 @@ public class PlayerManager : GenericManager<SampleEntity>
     {
         //Debug.Log("Refresh");
         if (player.isAlive)
-            player.Refresh();
+            player.Refresh(dt);
     }
 
     
