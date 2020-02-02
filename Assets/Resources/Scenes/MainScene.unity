@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.20946088, g: 0.4137641, b: 0.9139062, a: 1}
+  m_IndirectSpecularColor: {r: 0.2094577, g: 0.41376278, b: 0.9139059, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -514,7 +514,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2127034434
+--- !u!1001 &2061779481
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -544,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 5872568344643198186, guid: 2c35208aa009a7448a649a5489010674,
         type: 3}
       propertyPath: m_Name
-      value: Canvas (1)
+      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 5872568344643198190, guid: 2c35208aa009a7448a649a5489010674,
         type: 3}
@@ -671,26 +671,6 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5872568345442751886, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345442751886, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345442751886, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345442751886, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5872568345595094130, guid: 2c35208aa009a7448a649a5489010674,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -699,26 +679,6 @@ PrefabInstance:
     - target: {fileID: 5872568345595094130, guid: 2c35208aa009a7448a649a5489010674,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345836896167, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345836896167, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345836896167, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5872568345836896167, guid: 2c35208aa009a7448a649a5489010674,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5872568345932852178, guid: 2c35208aa009a7448a649a5489010674,

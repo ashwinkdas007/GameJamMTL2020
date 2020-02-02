@@ -175,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Don't Know why people still lives here
+  m_text: Why Don't People Leave it.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2dcb6d2f8d133e47b8601ac21294be7, type: 2}
   m_sharedMaterial: {fileID: -7217834067938912413, guid: b2dcb6d2f8d133e47b8601ac21294be7,
@@ -245,10 +245,10 @@ MonoBehaviour:
   m_margin: {x: -867.2871, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 41282338}
-    characterCount: 38
+    characterCount: 26
     spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
+    spaceCount: 4
+    wordCount: 5
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -611,7 +611,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700364845}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 43984f7b57610414db932a81328b92bf, type: 3}

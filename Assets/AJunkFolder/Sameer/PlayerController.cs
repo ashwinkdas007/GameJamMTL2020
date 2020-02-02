@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     void FireExtunguish()
     {
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -90,8 +90,18 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.collider.gameObject.GetComponentInChildren<Fire>())
                 {
-                    Destroy(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
+                    if(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>())
+                        Destroy(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
+
                     Destroy(hit.collider.gameObject.GetComponentInChildren<Fire>(), 2f);
+                }
+
+                if (hit.collider.gameObject.GetComponent<Fire>())
+                {
+                    if (hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>())
+                        Destroy(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
+
+                    Destroy(hit.collider.gameObject.GetComponent<Fire>(), 2f);
                 }
             }
         }
@@ -99,7 +109,7 @@ public class PlayerController : MonoBehaviour
     void CrackFix()
     {
         
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -124,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
     void DisplacementFix()
     {
-        if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
