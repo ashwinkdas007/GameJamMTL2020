@@ -41,6 +41,10 @@ public class DisasterManager : GenericManager<SampleEntity>
         //}
 
     }
+    public void getBurglarDisaster(Transform side)
+    {
+        side.gameObject.AddComponent<Burglar>();
+    }
     public void getRandomDisaster(Transform side)
     {
         float randNumber = Random.value;
@@ -49,20 +53,7 @@ public class DisasterManager : GenericManager<SampleEntity>
         {
             side.gameObject.AddComponent<Fire>();
             fire = side.GetComponent<Fire>();
-            fire.Initialize();
-
-            //if (Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/2f)
-            //{
-            //    if(Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/4f)
-            //    {
-            //        fire.Initialize();
-            //    }
-            //        fire.Initialize();
-            //}
-        }
-        else if (randNumber > 0.25 && randNumber<=0.5)
-        {
-            side.gameObject.AddComponent<Burglar>();
+            fire.Initialize();           
         }
        else if(randNumber > 0.5 &&randNumber<=0.75)
         {
