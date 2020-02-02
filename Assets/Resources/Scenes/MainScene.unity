@@ -154,7 +154,6 @@ MonoBehaviour:
   Camera_top: 3
   Camera_bottom: -13
   isAlive: 0
-  getPlayerInput: 1
 --- !u!4 &50596913
 Transform:
   m_ObjectHideFlags: 0

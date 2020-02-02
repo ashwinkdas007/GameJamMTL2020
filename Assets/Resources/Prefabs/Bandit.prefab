@@ -256,7 +256,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2733626073046410189}
-  - component: {fileID: 5432970282014461623}
   m_Layer: 0
   m_Name: Bandit
   m_TagString: Untagged
@@ -272,33 +271,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419922196569756126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.540997, y: 6.0762444, z: -5.050891}
+  m_LocalPosition: {x: 0.367, y: -0.138, z: 7.304351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8484930602971590068}
-  - {fileID: 2455896114023285067}
+  - {fileID: 6238089424315069801}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5432970282014461623
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1419922196569756126}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e794a34a363a31b45bc97de2fa60102e, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1455977420780557494
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +708,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2733626073046410189}
+  m_Father: {fileID: 6238089424315069801}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8202729216164061813
@@ -1765,6 +1744,58 @@ Transform:
   m_Father: {fileID: 1040345909091318957}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6974242521291245434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6238089424315069801}
+  - component: {fileID: 4042023024604420115}
+  m_Layer: 0
+  m_Name: Bandit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6238089424315069801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974242521291245434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.040487617, y: -0.011468664, z: -0.011312962}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_Children:
+  - {fileID: 8484930602971590068}
+  - {fileID: 2455896114023285067}
+  m_Father: {fileID: 2733626073046410189}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4042023024604420115
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974242521291245434}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: e794a34a363a31b45bc97de2fa60102e, type: 3}
+  m_Controller: {fileID: 9100000, guid: c93628e0c1a9edb4885c7dab0113adb2, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7035883851205215402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,7 +2043,7 @@ Transform:
   - {fileID: 6905570580877024674}
   - {fileID: 929938799581374506}
   - {fileID: 2467384752261268717}
-  m_Father: {fileID: 2733626073046410189}
+  m_Father: {fileID: 6238089424315069801}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8340862747905117662

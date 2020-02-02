@@ -37,11 +37,17 @@ public class FloorManager : GenericManager<SampleEntity>
 
     int NoOfFloorGroups = 2;
 
+    List<GameObject> ScenePrefabs;
     public override void Initialize()
     {
         FloorParent = new GameObject("FloorParent");
         center = new Vector3(0, 0, 0);
-        floor = Resources.Load<GameObject>("Prefabs/Floor");
+        ScenePrefabs = new List<GameObject>();
+        for (int i = 4; i < 7; i++)
+        {
+            ScenePrefabs.Add(Resources.Load<GameObject>("Prefabs/Floor "+i));
+        }
+       
         InitFloors();
         
     }
@@ -89,7 +95,12 @@ public class FloorManager : GenericManager<SampleEntity>
         {
             for (int i = 0; i < (NoOfFloorsInView * NoOfFloorGroups); i++)
             {
-                floorList.Add(GameObject.Instantiate(floor, center, Quaternion.identity, FloorParent.transform));
+
+                int prefabNum = Random.Range(0, 3);
+                floorList.Add(GameObject.Instantiate(ScenePrefabs[prefabNum], center, Quaternion.identity, FloorParent.transform));
+              
+
+                
                 floorNumber++;
                 GetFloorDisaster(floorList[i].transform);
             }

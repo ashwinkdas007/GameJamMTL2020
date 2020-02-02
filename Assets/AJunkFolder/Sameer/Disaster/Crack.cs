@@ -45,6 +45,8 @@ public class Crack : Disaster
             }
             crackRotate = GameObject.Instantiate(crack, crackPosition, Quaternion.identity, gameObject.transform);
             crackRotate.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+            //crackRotate.transform.localScale = new Vector3(crackRotate.transform.localScale.x * 1/8, crackRotate.transform.localScale.y, crackRotate.transform.localScale.z);
+            crackRotate.transform.localScale = crackRotate.transform.localScale * 1 / 8;
         }
         //else if(yCoord != 0)
         //{
@@ -60,7 +62,8 @@ public class Crack : Disaster
             else
                 crackPosition = new Vector3(Random.Range(-1.8f, 1.8f), parentYCoord + Random.Range(-1.8f, 1.8f), zCoord - 0.51f);
 
-            GameObject.Instantiate(crack, crackPosition, Quaternion.identity, gameObject.transform);
+            crackRotate = GameObject.Instantiate(crack, crackPosition, Quaternion.identity, gameObject.transform);
+            crackRotate.transform.localScale = crackRotate.transform.localScale * 1 / 8;
         }
         
 
