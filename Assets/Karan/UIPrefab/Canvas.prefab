@@ -651,7 +651,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 5337403784934821616}
-  - {fileID: 2272282972624866262}
+  - {fileID: 2439494950468826443}
   - {fileID: 5872568345951466280}
   - {fileID: 5872568344480026986}
   - {fileID: 5872568344283276648}
@@ -2384,7 +2384,7 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8727961003984433003
+--- !u!1 &8262824864994810009
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2392,24 +2392,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2272282972624866262}
-  - component: {fileID: 1365266551276281075}
-  - component: {fileID: 4427178537208362223}
-  - component: {fileID: 4100008346515555396}
+  - component: {fileID: 2439494950468826443}
+  - component: {fileID: 3140309038195935381}
+  - component: {fileID: 6173960607896043621}
+  - component: {fileID: 3823150062788600365}
   m_Layer: 5
-  m_Name: H
+  m_Name: H (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2272282972624866262
+--- !u!224 &2439494950468826443
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727961003984433003}
+  m_GameObject: {fileID: 8262824864994810009}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -2419,24 +2419,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 782, y: -143}
+  m_AnchoredPosition: {x: 761, y: -139}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
---- !u!222 &1365266551276281075
+--- !u!222 &3140309038195935381
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727961003984433003}
+  m_GameObject: {fileID: 8262824864994810009}
   m_CullTransparentMesh: 0
---- !u!114 &4427178537208362223
+--- !u!114 &6173960607896043621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727961003984433003}
+  m_GameObject: {fileID: 8262824864994810009}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -2458,8 +2458,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279323715
-  m_fontColor: {r: 0.2654772, g: 0.3018868, b: 0.06977572, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2483,7 +2483,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2515,9 +2515,9 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -75.45401, w: 0}
   m_textInfo:
-    textComponent: {fileID: 4427178537208362223}
+    textComponent: {fileID: 6173960607896043621}
     characterCount: 1
     spriteCount: 0
     spaceCount: 0
@@ -2541,13 +2541,13 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4100008346515555396
+--- !u!114 &3823150062788600365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8727961003984433003}
+  m_GameObject: {fileID: 8262824864994810009}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94be3748a747af943839d8a3a18b9bc6, type: 3}
