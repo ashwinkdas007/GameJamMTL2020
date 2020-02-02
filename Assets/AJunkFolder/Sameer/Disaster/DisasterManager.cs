@@ -72,7 +72,7 @@ public class DisasterManager : GenericManager<SampleEntity>
         } 
         else if(randNumber > 0.75 &&randNumber<=1.0)
         {
-            side.gameObject.AddComponent<Bugs>();
+            //side.gameObject.AddComponent<Bugs>();
         }
 
         
