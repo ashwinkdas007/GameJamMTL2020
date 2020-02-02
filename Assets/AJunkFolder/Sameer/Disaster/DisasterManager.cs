@@ -48,20 +48,29 @@ public class DisasterManager : GenericManager<SampleEntity>
     public void getRandomDisaster(Transform side)
     {
         float randNumber = Random.value;
-      
-       if( randNumber<=0.25f)
+
+        if (randNumber <= 0.25f)
         {
             side.gameObject.AddComponent<Fire>();
             fire = side.GetComponent<Fire>();
-            fire.Initialize();           
+            fire.Initialize();
+
+            if (Random.Range(0f, 1f) <= ((FloorManager.Instance.floorNumber) / 100) / 2)
+            {
+                if (Random.Range(0f, 1f) <= ((FloorManager.Instance.floorNumber) / 100) / 4)
+                {
+                    fire.Initialize();
+                }
+                fire.Initialize();
+            }
         }
-       else if(randNumber > 0.5 &&randNumber<=0.75)
+        else if (randNumber > 0.5 && randNumber <= 0.75)
         {
             side.gameObject.AddComponent<Crack>();
             crack = side.GetComponent<Crack>();
             crack.Initialize();
-        } 
-        else if(randNumber > 0.75 &&randNumber<=1.0)
+        }
+        else if (randNumber > 0.75 && randNumber <= 1.0)
         {
             //side.gameObject.AddComponent<Bugs>();
         }

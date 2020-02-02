@@ -27,12 +27,11 @@ public class Crack : Disaster
     {
         //fire.transform.parent = this.gameObject.transform;
         crackRotate = GameObject.Instantiate(crack, transform.position + (transform.position - transform.parent.parent.position).normalized * 0.25f, Quaternion.identity, gameObject.transform);
-        
+        crackRotate.transform.localEulerAngles = Vector3.zero;
 
         //if (xCoord != 0)
-        {
-            crackRotate.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);         
-        }  
+        //    crackRotate.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);         
+       
         
         crackRotate.transform.localScale = crackRotate.transform.localScale * 1 / 8;
 
