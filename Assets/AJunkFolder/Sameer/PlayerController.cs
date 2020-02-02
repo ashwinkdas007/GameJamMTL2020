@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -43,6 +44,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerInput(dt);
         }
+        if (!isAlive)
+            SceneManager.LoadScene(0);
 
     }
     public void PostInitialize()
