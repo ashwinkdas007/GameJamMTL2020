@@ -76,16 +76,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.C))
         {
-            GameObject waterEffect = Instantiate(water, transform.GetChild(0).transform.position, Quaternion.LookRotation(transform.forward)).gameObject;
-            waterEffect.transform.Rotate(new Vector3(0, waterEffect.transform.rotation.y - 90, 0));
-            
-            Destroy(waterEffect, 3f);
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit))
             {
-                waterEffect.transform.position = new Vector3(transform.GetChild(0).transform.position.x, hit.point.y + 3, transform.GetChild(0).transform.position.z);
+
+                GameObject waterEffect = Instantiate(water, transform.GetChild(0).transform.position, Quaternion.LookRotation(transform.forward)).gameObject;
+                waterEffect.transform.Rotate(new Vector3(0, waterEffect.transform.rotation.y - 90, 0));
+
+                Destroy(waterEffect, 3f);
+                waterEffect.transform.position += new Vector3(hit.point.x, hit.point.y - 5, hit.point.z);
+
                 if (hit.collider.gameObject.GetComponentInChildren<Fire>())
                 {
                     Destroy(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
