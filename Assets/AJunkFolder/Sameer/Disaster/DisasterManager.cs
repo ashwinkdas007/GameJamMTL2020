@@ -7,6 +7,7 @@ public class DisasterManager : GenericManager<SampleEntity>
 {
     //public Dictionary<DisasterType, Disaster> disasterPrefabDict = new Dictionary<DisasterType, Disaster>(); //all enemy prefabs
     // Start is called before the first frame update
+
     #region
 
     private static DisasterManager instance;
@@ -25,6 +26,13 @@ public class DisasterManager : GenericManager<SampleEntity>
         }
     }
     #endregion
+
+    public int sinceLastFire;
+    public int sinceLastCracks;
+    public int sinceLastBugs;
+    public int sinceLastBurglar;
+    public Fire fire;
+    public Crack crack;
     public override void Initialize()
     {
         //foreach (DisasterType dtype in System.Enum.GetValues(typeof(DisasterType))) //fill the resource dictionary with all the prefabs
@@ -40,6 +48,17 @@ public class DisasterManager : GenericManager<SampleEntity>
        if( randNumber<=0.25f)
         {
             side.gameObject.AddComponent<Fire>();
+            fire = side.GetComponent<Fire>();
+            fire.Initialize();
+
+            //if (Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/2f)
+            //{
+            //    if(Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/4f)
+            //    {
+            //        fire.Initialize();
+            //    }
+            //        fire.Initialize();
+            //}
         }
         else if (randNumber > 0.25 && randNumber<=0.5)
         {
@@ -48,6 +67,8 @@ public class DisasterManager : GenericManager<SampleEntity>
        else if(randNumber > 0.5 &&randNumber<=0.75)
         {
             side.gameObject.AddComponent<Crack>();
+            crack = side.GetComponent<Crack>();
+            crack.Initialize();
         } 
         else if(randNumber > 0.75 &&randNumber<=1.0)
         {

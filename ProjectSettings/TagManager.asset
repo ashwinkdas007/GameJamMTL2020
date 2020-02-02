@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Center
+  - Floor
+  - WindowSide
   layers:
   - Default
   - TransparentFX

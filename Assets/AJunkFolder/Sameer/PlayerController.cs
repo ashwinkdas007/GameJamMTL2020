@@ -8,14 +8,15 @@ public class PlayerController : MonoBehaviour
     public float Radious = 20f;
     Vector3 center = new Vector3(0, 0, 0);
     public float heightOfEachFloor = 15f;
-    public float Camera_top = 0f;
-    public float Camera_bottom = -11f;
+    public float Camera_top;//= FloorManager.Instance.floorList[2].transform.position.y;
+    public float Camera_bottom;// = FloorManager.Instance.floorList[0].transform.position.y;
     [HideInInspector] public bool isAlive;
-    public bool getPlayerInput = true;
+    public bool EnablePlayerInput { get; set; }
     public void Initialize()
     {
-        //Debug.Log("ASDFADF");
-        GameObject.FindGameObjectWithTag("MainCamera").transform.position=new Vector3(0, FloorManager.Instance.floorList[0].transform.position.y, -Radious);
+        GameObject.FindGameObjectWithTag("MainCamera").transform.position=new Vector3(0, FloorManager.Instance.floorList[1].transform.position.y, -Radious);
+        Camera_top = FloorManager.Instance.floorList[1].transform.position.y+9;
+        Camera_bottom = FloorManager.Instance.floorList[1].transform.position.y-9;
         isAlive = true;
     }
 
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public void Refresh()
     {
         // Debug.Log("ASDFADF");
-        if (getPlayerInput)
+        if (EnablePlayerInput)
         {
             PlayerInput();
         }
