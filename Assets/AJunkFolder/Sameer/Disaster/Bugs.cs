@@ -4,6 +4,27 @@ using UnityEngine;
 
 public class Bugs : Disaster
 {
-    // Start is called before the first frame update
+    GameObject spiderPrefab;
+    static Animator anim;
+    Transform floor;
     
+
+    private void Awake()
+    {
+        spiderPrefab = Resources.Load<GameObject>("Prefabs/Spider");
+    }
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        //floor = GetComponent<Floor>().transform;
+        
+        GameObject.Instantiate(spiderPrefab);
+
+        
+    }
+    private void Update()
+    {
+        
+    }
+
 }
