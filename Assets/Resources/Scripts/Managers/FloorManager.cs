@@ -24,12 +24,12 @@ public class FloorManager : GenericManager<SampleEntity>
 
     GameObject floor;
     GameObject FloorParent;
-    public List<GameObject> floorList = new List<GameObject>();
+    public List<Floor> floorList = new List<Floor>();
     public int NoOfFloorsInView = 3;
     public float floorHeight;
     Vector3 center;
     float lerpActivationCounter = 0f;
-    public float lerpActivationTime = 10f;
+    public float lerpActivationTime = 15f;
     bool isInitialized = false;
     public int floorNumber = 0;
     float lerpTimer = 0;
@@ -60,7 +60,7 @@ public class FloorManager : GenericManager<SampleEntity>
     public override void Refresh(float dt)
     {
 
-        ReplaceFloors(dt);
+        RecycleFloors(dt);
         //Debug.Log(timePass);
         lerpActivationCounter += dt;
         if(lerpActivationCounter >= lerpActivationTime)
@@ -108,26 +108,17 @@ public class FloorManager : GenericManager<SampleEntity>
             {
 
                 int prefabNum = Random.Range(0, 3);
-                floorList.Add(GameObject.Instantiate(ScenePrefabs[prefabNum], center, Quaternion.identity, FloorParent.transform));
+                floorList.Add(GameObject.Instantiate(ScenePrefabs[prefabNum], center, Quaternion.identity, FloorParent.transform).AddComponent<Floor>());
                 
                 int RandVal = Random.Range(1,4);               
                 floorList[i].transform.rotation = Quaternion.Euler(0, 90*RandVal, 0);
-              
-
-                
-                floorNumber++;
+                floorList[i].transform.name = "Floor" + i+1;
+                floorList[i].floorNumber = ++floorNumber;
                 GetFloorDisaster(floorList[i].transform);
             }
             isInitialized = true;
-            InitFloorsHeight();
-            
+            InitFloorsHeight(); 
         }
-            
-        for (int i = 0; i < floorList.Count; i++)
-        {
-            floorList[i].transform.name = "Floor" + i;
-        }
-
     }
 
     public void InitFloorsHeight()
@@ -141,36 +132,37 @@ public class FloorManager : GenericManager<SampleEntity>
             floorList[i].transform.position = new Vector3(pos.x, pos.y + (i * floorHeight), pos.z);
         }
     }
-    public void ReplaceFloors(float dt)
+    public void RecycleFloors(float dt)
     {
 
-        GameObject bottomFloor = floorList[0];
+        Floor bottomFloor = floorList[0];
         float teleportHeightOffset = (floorHeight * floorList.Count);
 
         if (bottomFloor.transform.position.y <= -11)
         {
+            if (bottomFloor.disasterCount <= 0)
+                PlayerManager.Instance.player.scoreCount++;
+            else
+                PlayerManager.Instance.player.life--;
             
             Disaster d;
-            if(bottomFloor.TryGetComponent<Disaster>(out d))            
-                GameObject.Destroy(d);
-            
-           
+            if(bottomFloor.TryGetComponent<Disaster>(out d))
+                GameObject.Destroy(d);           
+                
             for (int i = 0; i < bottomFloor.transform.childCount; i++)
             {
                 if (bottomFloor.transform.GetChild(i).TryGetComponent<Disaster>(out d))
                     GameObject.Destroy(d);
             }
 
-
+            bottomFloor.disasterCount = 0;
             bottomFloor.transform.position = new Vector3(bottomFloor.transform.position.x, bottomFloor.transform.position.y + teleportHeightOffset, bottomFloor.transform.position.z);
             floorList.RemoveAt(0);
             floorList.Add(bottomFloor);
-            floorNumber++;
-            InitFloors();
+            bottomFloor.floorNumber = ++floorNumber;
+            bottomFloor.transform.name = "Floor" + bottomFloor.floorNumber;
             GetFloorDisaster(bottomFloor.transform);
-        }
-            
-           
+        }     
     }
 
     public void LerpFloorsDown(float dt)

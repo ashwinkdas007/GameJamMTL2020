@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour, IUpdatable
 {
-    List<Block> blocks;
+    List<Floor> blocks;
     // Start is called before the first frame update
     public void Initialize()
     {

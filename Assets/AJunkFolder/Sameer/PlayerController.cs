@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     Vector3 initialMiddleFloorPos;
 
     public bool EnablePlayerInput = true;
+
+    [HideInInspector]
+    public int scoreCount = 0;
+    [HideInInspector]
+    public int life = 3;
+
     public void Initialize()
     {
         initialMiddleFloorPos = FloorManager.Instance.floorList[1].transform.position;
@@ -139,6 +145,12 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void Dead()
+    {
+        isAlive = false;
+    }
+
 }
         
 
