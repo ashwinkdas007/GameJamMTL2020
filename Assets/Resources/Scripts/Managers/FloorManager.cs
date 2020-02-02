@@ -131,7 +131,7 @@ public class FloorManager : GenericManager<SampleEntity>
     {
 
         GameObject bottomFloor = floorList[0];
-        float teleportHeightOffset = (floorHeight * floorList.Count) + floorList.Count;
+        float teleportHeightOffset = (floorHeight * floorList.Count);
         if (bottomFloor.transform.position.y <= -11)
         {
             bottomFloor.transform.position = new Vector3(bottomFloor.transform.position.x, bottomFloor.transform.position.y + teleportHeightOffset, bottomFloor.transform.position.z);
