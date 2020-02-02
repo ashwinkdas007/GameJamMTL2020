@@ -91,15 +91,16 @@ public class FloorManager : GenericManager<SampleEntity>
             {
                 floorList.Add(GameObject.Instantiate(floor, center, Quaternion.identity, FloorParent.transform));
                 floorNumber++;
+                GetFloorDisaster(floorList[i].transform);
             }
             isInitialized = true;
             InitFloorsHeight();
+            
         }
             
         for (int i = 0; i < floorList.Count; i++)
         {
             floorList[i].transform.name = "Floor" + i;
-            //GetFloorDisaster(floorList[i].transform);
         }
 
     }
@@ -125,9 +126,11 @@ public class FloorManager : GenericManager<SampleEntity>
             floorList.RemoveAt(0);
             floorList.Add(bottomFloor);
             floorNumber++;
+            InitFloors();
+            GetFloorDisaster(bottomFloor.transform);
         }
             
-        InitFloors();     
+           
     }
 
     public void LerpFloorsDown(float dt)

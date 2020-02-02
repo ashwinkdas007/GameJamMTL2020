@@ -19,7 +19,7 @@ public class Crack : Disaster
         parentYCoord = gameObject.transform.parent.position.y;
         crack = Resources.Load<GameObject>("Prefabs/Crack");
 
-        //spawnCracks();
+        spawnCracks();
     }
 
 
@@ -43,7 +43,7 @@ public class Crack : Disaster
                 //crack.transform.RotateAround(crack.transform.position, transform.up, 90);
                 crackPosition = new Vector3(xCoord - 0.51f, parentYCoord + Random.Range(-1.8f, 1.8f), Random.Range(-1.8f, 1.8f));
             }
-            crackRotate = GameObject.Instantiate(crack, crackPosition, Quaternion.identity, this.transform.parent);
+            crackRotate = GameObject.Instantiate(crack, crackPosition, Quaternion.identity, gameObject.transform);
             crackRotate.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
         }
         //else if(yCoord != 0)
@@ -60,7 +60,7 @@ public class Crack : Disaster
             else
                 crackPosition = new Vector3(Random.Range(-1.8f, 1.8f), parentYCoord + Random.Range(-1.8f, 1.8f), zCoord - 0.51f);
 
-            GameObject.Instantiate(crack, crackPosition, Quaternion.identity, gameObject.transform.parent);
+            GameObject.Instantiate(crack, crackPosition, Quaternion.identity, gameObject.transform);
         }
         
 
