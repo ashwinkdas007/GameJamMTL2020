@@ -84,10 +84,10 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.GetComponentInParent<Fire>())
+                if (hit.collider.gameObject.GetComponent<Fire>())
                 {
-                    Destroy(hit.collider.gameObject.GetComponentInParent<Fire>().transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
-                    Destroy(hit.collider.gameObject.GetComponentInParent<Fire>(), 2f);
+                    Destroy(hit.collider.gameObject.transform.GetComponentInChildren<ParticleSystem>().transform.parent.gameObject, 1f);
+                    Destroy(hit.collider.gameObject.GetComponent<Fire>(), 2f);
                 }
             }
         }
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
                 if (hit.collider.gameObject.GetComponent<Crack>())
                 {
-                    GameObject crack = hit.collider.gameObject.transform.GetChild(0).gameObject;
+                    GameObject crack = hit.collider.gameObject.transform.GetComponentInChildren<SpriteRenderer>().gameObject;
                     Destroy(hit.collider.gameObject.GetComponent<Crack>(), 1.5f);
                     Destroy(crack, 1.5f);
                 }
