@@ -8,7 +8,7 @@ public class Displacement : Disaster
     public void Awake()
     {
         oldPos = new Vector3();
-        Vector3 newPosition=transform.position;
+        Vector3 newPosition = transform.position;
         if(Random.value>0.5f)
         {
             //x
