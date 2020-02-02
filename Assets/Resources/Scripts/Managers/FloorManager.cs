@@ -123,7 +123,8 @@ public class FloorManager : GenericManager<SampleEntity>
         for (int i = 1; i < floorList.Count; i++)
         {
             Vector3 pos = floorList[i].transform.position;
-            floorList[i].transform.position = new Vector3(pos.x, pos.y + (i * floorHeight) + i, pos.z);
+
+            floorList[i].transform.position = new Vector3(pos.x, pos.y + (i * floorHeight), pos.z);
         }
     }
     public void ReplaceFloors(float dt)
