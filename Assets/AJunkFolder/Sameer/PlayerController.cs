@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     public float Radious = 20f;
     Vector3 center = new Vector3(0, 0, 0);
     public float heightOfEachFloor = 15f;
@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
         isAlive = true;
     }
 
-    // Update is called once per frame
     public void Refresh()
     {
         // Debug.Log("ASDFADF");
@@ -28,14 +27,16 @@ public class PlayerController : MonoBehaviour
         {
             PlayerInput();
         }
+
     }
     public void PostInitialize()
     { 
 
     }
 
-    public void PhysicsRefresh()
-    { 
+    public void FixedRefresh()
+    {
+  
     }
 
 
@@ -56,6 +57,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             transform.Rotate(0, 1, 0);
 
+
+
+        //For Displacement
         if (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.Z))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -65,11 +69,40 @@ public class PlayerController : MonoBehaviour
                 if (hit.transform.gameObject.GetComponentInParent<Displacement>() != null)
                 {
                     if (hit.transform.parent.position != hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos())
-                        hit.transform.parent.position= hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos();
+                         
+                    hit.transform.parent.position = Vector3.Lerp(hit.transform.gameObject.GetComponentInParent<Displacement>().GetOldPos(), hit.transform.parent.position, 50f * Time.deltaTime);
                 }
             }
         }
+        //Debug.Log(" hit.transform.position IN BEGINING" + hit.transform.position+"Hit NAme"+hit.transform.name);
+
+        //Transform temp = hit.transform;
+        // while (!temp.CompareTag("Floor"))
+        // {
+        //     temp = temp.parent.transform;
+
+        // }
+        // if (temp.GetComponent<Displacement>() != null)
+        // {
+        //     Debug.Log(" hit.transform.position" + hit.transform.position + "Hit NAme" + hit.transform.name);
+        //     Debug.Log(temp.position + "    " + temp.name);
+
+        //     Vector3 dirToPush = (temp.position - hit.collider.transform.position).normalized;
+        //     Debug.Log(dirToPush);
+        //     Rigidbody rb = temp.GetComponent<Rigidbody>();
+        //     if(Vector3.SqrMagnitude( hit.transform.GetComponent<Displacement>().GetOldPos()- hit.collider.transform.position)<5)
+        //     {
+        //         rb.AddForce(dirToPush*2f, ForceMode.Force);                            
+        //     }
+
+        // }
     }
+}
+        
+
+    
+
+    
 
 
-    }
+
