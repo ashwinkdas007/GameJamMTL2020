@@ -73,14 +73,30 @@ public class FloorManager : GenericManager<SampleEntity>
     
     public void GetFloorDisaster(Transform floor)
     {
- 
-        foreach (Transform side in floor)
+        if (floor.CompareTag("Floor"))
         {
-            if (Random.value > 0.5f)
-                DisasterManager.Instance.getRandomDisaster(side);
+
+            foreach (Transform side in floor)
+            {
+                if (side.CompareTag("Wall"))
+                {
+                    foreach (Transform d in side)
+                    {
+                        if (Random.value > 0.5f)
+                            DisasterManager.Instance.getRandomDisaster(d);
+                    }
+                }
+                else if (side.CompareTag("WindowSide"))
+                {
+                    if (Random.value > 0.5f)
+                        DisasterManager.Instance.getBurglarDisaster(side);
+                }
+            }
+            
+            if (Random.value > 0.7f)
+                DisasterManager.Instance.getDisplacementDisaster(floor);
+           
         }
-        if(Random.value>0.7f)       
-                DisasterManager.Instance.getDisplacementDisaster(floor);            
 
     }
     
