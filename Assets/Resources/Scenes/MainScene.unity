@@ -153,7 +153,6 @@ MonoBehaviour:
   heightOfEachFloor: 10
   Camera_top: 3
   Camera_bottom: -13
-  water: {fileID: 3031461365554823779, guid: a5d582ca303a8c2449e9f8cd988b98ad, type: 3}
   isAlive: 0
   EnablePlayerInput: 1
 --- !u!4 &50596913
