@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float heightOfEachFloor = 15f;
     public float Camera_top;//= FloorManager.Instance.floorList[2].transform.position.y;
     public float Camera_bottom;// = FloorManager.Instance.floorList[0].transform.position.y;
+    public ParticleSystem water;
     [HideInInspector] public bool isAlive;
 
     public bool EnablePlayerInput = true;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         CrackFix();
         DisplacementFix();
-
+        FireExtunguish();
         if (Input.GetKey(KeyCode.W))
         {
             if (!(transform.position.y >= Camera_top))
@@ -62,6 +63,20 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(0, 1, 0);
     }
 
+    void FireExtunguish()
+    {
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.C))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject waterEffect = Instantiate(water, transform.GetChild(0).transform.position, Quaternion.LookRotation(transform.forward)).gameObject;
+                waterEffect.transform.Rotate(new Vector3(0, waterEffect.transform.rotation.y - 90, 0));
+                Destroy(waterEffect, 4f);
+            }
+        }
+    }
     void CrackFix()
     {
         if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.X))
