@@ -29,10 +29,10 @@ public class Crack : Disaster
         crackRotate = GameObject.Instantiate(crack, transform.position + (transform.position - transform.parent.parent.position).normalized * 0.25f, Quaternion.identity, gameObject.transform);
         
 
-        if (xCoord != 0)
+        //if (xCoord != 0)
         {
             crackRotate.transform.rotation = Quaternion.AngleAxis(90, Vector3.up);         
-        }   
+        }  
         
         crackRotate.transform.localScale = crackRotate.transform.localScale * 1 / 8;
 
