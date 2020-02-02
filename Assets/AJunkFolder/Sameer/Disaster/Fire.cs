@@ -12,10 +12,10 @@ public class Fire : Disaster
     Vector3 firePosition;
     public void Initialize()
     {
-        xCoord = this.transform.position.x;
-        yCoord = this.transform.position.y;
-        zCoord = this.transform.position.z;
-        parentYCoord = this.transform.parent.position.y;
+        xCoord = gameObject.transform.position.x;
+        yCoord = gameObject.transform.position.y;
+        zCoord = gameObject.transform.position.z;
+        parentYCoord = gameObject.transform.parent.position.y;
         fire = Resources.Load<GameObject>("Prefabs/TinyFire");
 
         spawnFires();
@@ -48,7 +48,7 @@ public class Fire : Disaster
                 firePosition = new Vector3(Random.Range(-3.5f, 3.5f), parentYCoord + Random.Range(-3.5f, 3.5f), zCoord - 0.5f);
 
         }
-        GameObject.Instantiate(fire, firePosition, Quaternion.identity, this.transform.parent);
+        GameObject.Instantiate(fire, firePosition, Quaternion.identity, gameObject.transform);
 
     }
 }

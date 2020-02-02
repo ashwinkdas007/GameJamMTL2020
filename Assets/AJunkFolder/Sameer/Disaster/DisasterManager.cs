@@ -51,14 +51,14 @@ public class DisasterManager : GenericManager<SampleEntity>
             fire = side.GetComponent<Fire>();
             fire.Initialize();
 
-            if (Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/2f)
-            {
-                if(Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/4f)
-                {
-                    fire.Initialize();
-                }
-                    fire.Initialize();
-            }
+            //if (Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/2f)
+            //{
+            //    if(Random.Range(0f, 1f) <= (FloorManager.Instance.floorNumber / 100)/4f)
+            //    {
+            //        fire.Initialize();
+            //    }
+            //        fire.Initialize();
+            //}
         }
         else if (randNumber > 0.25 && randNumber<=0.5)
         {

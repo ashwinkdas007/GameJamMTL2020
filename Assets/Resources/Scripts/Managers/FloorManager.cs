@@ -31,7 +31,7 @@ public class FloorManager : GenericManager<SampleEntity>
     float lerpActivationCounter = 0f;
     public float lerpActivationTime = 10f;
     bool isInitialized = false;
-
+    public int floorNumber = 0;
     float lerpTimer = 0;
     float lerpCooldown = 3;
 
@@ -43,6 +43,7 @@ public class FloorManager : GenericManager<SampleEntity>
         center = new Vector3(0, 0, 0);
         floor = Resources.Load<GameObject>("Prefabs/Floor");
         InitFloors();
+        
     }
 
     public override void PostInitialize()
@@ -64,22 +65,21 @@ public class FloorManager : GenericManager<SampleEntity>
 
     }
     
-    public void GetFloorDisaster()
+    public void GetFloorDisaster(Transform floor)
     {
-        foreach (Transform floor in FloorParent.transform)
-        {
-            if (Random.value > 0.5f)
-            {
+        
+        //foreach (Transform floor in FloorParent.transform)
+
                 foreach (Transform side in floor)
                 {
-                    DisasterManager.Instance.getRandomDisaster(side);
+                    if (Random.value > 0.5f)
+                        DisasterManager.Instance.getRandomDisaster(side);
                 }
-            }
-            else
-            {
-                DisasterManager.Instance.getDisplacementDisaster(floor);
-            }
-        }
+            //else
+            //{
+            //    //DisasterManager.Instance.getDisplacementDisaster(floor);
+            //}
+
 
     }
     
@@ -90,6 +90,7 @@ public class FloorManager : GenericManager<SampleEntity>
             for (int i = 0; i < (NoOfFloorsInView * NoOfFloorGroups); i++)
             {
                 floorList.Add(GameObject.Instantiate(floor, center, Quaternion.identity, FloorParent.transform));
+                floorNumber++;
             }
             isInitialized = true;
             InitFloorsHeight();
@@ -98,9 +99,9 @@ public class FloorManager : GenericManager<SampleEntity>
         for (int i = 0; i < floorList.Count; i++)
         {
             floorList[i].transform.name = "Floor" + i;
+            //GetFloorDisaster(floorList[i].transform);
         }
 
-        //GetFloorDisaster();
     }
 
     public void InitFloorsHeight()
@@ -123,6 +124,7 @@ public class FloorManager : GenericManager<SampleEntity>
             bottomFloor.transform.position = new Vector3(bottomFloor.transform.position.x, bottomFloor.transform.position.y + teleportHeightOffset, bottomFloor.transform.position.z);
             floorList.RemoveAt(0);
             floorList.Add(bottomFloor);
+            floorNumber++;
         }
             
         InitFloors();     
