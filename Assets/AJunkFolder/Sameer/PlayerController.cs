@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerInput()
     {
+        CrackFix();
         if (Input.GetKey(KeyCode.W))
         {
             if (!(transform.position.y >= Camera_top))
@@ -96,6 +97,24 @@ public class PlayerController : MonoBehaviour
         //     }
 
         // }
+    }
+
+    void CrackFix()
+    {
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.X))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.GetComponent<Crack>())
+                {
+                    GameObject crack = hit.collider.gameObject.transform.GetChild(0).gameObject;
+                    Destroy(hit.collider.gameObject.GetComponent<Crack>());
+                    Destroy(crack);
+                }
+            }
+        }
     }
 }
         
